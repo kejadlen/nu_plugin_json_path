@@ -1,5 +1,6 @@
 on:
   push:
+    branches: ci
     tags:
       - v*
   workflow_dispatch:
