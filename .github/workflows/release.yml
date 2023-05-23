@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - ci
+    tags:
+      - v*
+  workflow_dispatch:
+
+name: create-release
+
+jobs:
+  build:
+    name: Create release
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Build project
+        run: cargo build --release
