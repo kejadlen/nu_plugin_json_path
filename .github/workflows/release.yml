@@ -18,6 +18,8 @@ jobs:
       - name: Create release
         id: create-release
         run: |
+          git tag v${{ github.sha }}
+          git push --tags
           UPLOAD_URL="$(
             curl -L \
               -X POST \
