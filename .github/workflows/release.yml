@@ -9,9 +9,14 @@ on:
 name: create-release
 
 jobs:
-  build:
+  release:
     name: Create release
-    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
