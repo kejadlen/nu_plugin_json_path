@@ -16,18 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Checkout nushell
-        uses: actions/checkout@v3
-        with:
-          repository: nushell/nushell
-          path: nushell
-
       - uses: dtolnay/rust-toolchain@stable
-
-      - name: Setup local links
-        run: |
-          cargo add nu-plugin --path ${{ github.workspace }}/nushell/crates/nu-plugin
-          cargo add nu-protocol --path ${{ github.workspace }}/nushell/crates/nu-protocol
 
       - name: Build project
         run: cargo build --release
