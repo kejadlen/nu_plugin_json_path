@@ -26,8 +26,8 @@ jobs:
 
       - name: Setup local links
         run: |
-          cargo add nu-plugin ./nushell/crates/nu-plugin
-          cargo add nu-protocol ./nushell/crates/nu-protocol
+          cargo add nu-plugin ${{ github.workspace }}/nushell/crates/nu-plugin
+          cargo add nu-protocol ${{ github.workspace }}/nushell/crates/nu-protocol
 
       - name: Build project
         run: cargo build --release
