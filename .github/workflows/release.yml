@@ -47,7 +47,8 @@ jobs:
         run: cargo build --release
 
       - name: Upload build
-        curl -L \
+        run: |
+          curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
@@ -55,3 +56,5 @@ jobs:
             -H "Content-Type: application/octet-stream" \
             "${UPLOAD_URL/'{?name,label}'/?name=nu_plugin_json_path.${{ matrix.os }}}" \
             --data-binary "@target/release/nu_plugin_json_path"
+        env:
+          UPLOAD_URL: ${{ needs.create-release.outputs.upload-url }}
